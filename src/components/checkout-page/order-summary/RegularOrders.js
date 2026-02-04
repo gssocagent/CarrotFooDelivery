@@ -62,6 +62,7 @@ const RegularOrders = ({ orderType }) => {
 
     const handleSuccess = (item) => {
         dispatch(removeProduct(item))
+        window.location.reload()
     }
 
     const handleRemove = (item) => {

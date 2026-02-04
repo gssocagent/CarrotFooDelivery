@@ -131,7 +131,7 @@ const AddressSelectionList = (props) => {
                                             checked={
                                                 adres.id === selectedAddress?.id
                                             }
-                                            row
+                                            // row
                                             aria-labelledby="demo-row-radio-buttons-group-label"
                                             name="row-radio-buttons-group"
                                         />

@@ -102,6 +102,7 @@ const NavResturant = ({ zoneid }) => {
             </NavMenuLink>
             <RTL direction={languageDirection}>
                 <Popover
+                    disablePortal
                     disableScrollLock={true}
                     id="mouse-over-popover"
                     open={openresdrop}

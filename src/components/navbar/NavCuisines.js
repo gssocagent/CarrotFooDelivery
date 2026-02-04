@@ -73,6 +73,7 @@ const NavCuisines = ({ setRestaurantModal, languageDirection }) => {
                 />
             </NavMenuLink>
             <Menu
+                disablePortal
                 disableScrollLock={true}
                 id="mouse-over-popover"
                 open={opendrop}

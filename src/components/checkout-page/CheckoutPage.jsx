@@ -152,7 +152,7 @@ const CheckoutPage = ({ isDineIn }) => {
         totalAmount,
         walletAmount,
         subscriptionSubTotal,
-    } = useSelector((state) => state.cart)
+    } = useSelector((state) => state.cart || {})
     let currentLatLng = undefined
     const [address, setAddress] = useState(undefined)
     const [paymenMethod, setPaymenMethod] = useState('')
@@ -241,11 +241,11 @@ const CheckoutPage = ({ isDineIn }) => {
             const timer = setTimeout(() => {
                 const rId = restaurantIdRef.current || sessionStorage.getItem('last_restaurant_id')
                 if (rId) {
-                    window.location.href = `/restaurant/${rId}`
+                    router.push(`/restaurant/${rId}`)
                 } else {
-                    window.location.href = '/home'
+                    router.push('/home')
                 }
-            }, 1000)
+            }, 100)
             return () => clearTimeout(timer)
         }
     }, [cartList, page])
