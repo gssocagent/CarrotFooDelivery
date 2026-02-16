@@ -61,11 +61,10 @@ const Banner = ({ bannerIsLoading }) => {
                 {
                     pathname: '/restaurant/[id]',
                     query: {
-                        id: `${
-                            banner?.restaurant?.slug
+                        id: `${banner?.restaurant?.slug
                                 ? banner?.restaurant?.slug
                                 : banner?.restaurant?.id
-                        }`,
+                            }`,
                     },
                 },
                 undefined,
@@ -74,9 +73,8 @@ const Banner = ({ bannerIsLoading }) => {
         } else if (banner?.available_date_ends) {
             router.push(
                 {
-                    pathname: `campaigns/${
-                        banner?.slug ? banner?.slug : banner?.id
-                    }`,
+                    pathname: `campaigns/${banner?.slug ? banner?.slug : banner?.id
+                        }`,
                 },
                 undefined,
                 { shallow: true }
@@ -167,7 +165,7 @@ const Banner = ({ bannerIsLoading }) => {
                     xs: bannerData?.length > 0 && '15px',
                     md: bannerData?.length > 0 && '10px',
                 },
-                paddingBottom: { xs: '30px', md: '20px' },
+                paddingBottom: { xs: '0px', md: '20px' },
             }}
         >
             {!bannerIsLoading ? (
@@ -175,8 +173,8 @@ const Banner = ({ bannerIsLoading }) => {
                     gap=".8rem"
                     onMouseEnter={() => setHoverOn(true)}
                     onMouseLeave={() => setHoverOn(false)}
-                    sx={{minHeight:{xs:"165px",md:"185px"}}}
-                                    >
+                    sx={{ minHeight: { xs: "165px", md: "185px" } }}
+                >
                     <Slider {...bannerSettings}>
                         {bannerData?.slice(0, 8).map((banner) => {
                             return (

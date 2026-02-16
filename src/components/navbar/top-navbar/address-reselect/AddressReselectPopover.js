@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Drawer, Typography, useTheme, Stack } from '@mui/material'
+import { useRouter } from 'next/router'
 import DeliveryAddress from '../../../checkout-page/DeliveryAddress'
 import { CustomButtonPrimary } from '@/styled-components/CustomButtons.style'
 import { CustomStackFullWidth } from '@/styled-components/CustomStyles.style'
@@ -22,6 +23,7 @@ import { CustomToaster } from '@/components/custom-toaster/CustomToaster'
 const AddressReselectPopover = (props) => {
     const token = getToken()
     const theme = useTheme()
+    const router = useRouter()
     const dispatch = useDispatch()
     const [rerenderMap, setRerenderMap] = useState(false)
     const {
@@ -36,10 +38,15 @@ const AddressReselectPopover = (props) => {
         setAddress,
         ...other
     } = props
-    const { geoCodeLoading } = useGetLocation(coords)
+    const { geoCodeLoading, setLocationEnabled } = useGetLocation(coords)
     const { location, formatted_address, zoneId } = useSelector(
         (state) => state.addressData
     )
+    useEffect(() => {
+        if (open) {
+            setLocationEnabled(true)
+        }
+    }, [open])
     const { userLocationUpdate } = useSelector((state) => state.globalSettings)
     const languageDirection = localStorage.getItem('direction')
     const handleSuccess = () => {
@@ -70,6 +77,11 @@ const AddressReselectPopover = (props) => {
             CustomToaster('success', 'New location has been set.')
             setAddress(null)
             dispatch(setUserLocationUpdate(!userLocationUpdate))
+            if (router.pathname === '/home') {
+                router.reload()
+            } else {
+                router.push('/home')
+            }
             onClose()
         }
     }
